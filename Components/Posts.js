@@ -10,7 +10,7 @@ export default class PostsScreen extends Component {
             user1: '',
             users: '',
             uid: 1,
-            modalvisible: false
+            modalvisible: false,
         }
     }
 
@@ -34,6 +34,10 @@ export default class PostsScreen extends Component {
                             if (item.userId == this.state.uid) {
                                 return (
                                     <View key={index} style={{ marginTop: 20 }}>
+                                        <View style={{ flexDirection: 'row' , marginTop:5 }}>
+                                            <Image style={{ height: 30, width: 30, borderRadius: 20 }} source={{ uri: this.state.user1.profilepicture }} />
+                                            <Text style={{ marginTop:4 }}> by {this.state.user1.username}</Text>
+                                        </View>
                                         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{item.title}</Text>
                                         <Text style={{ marginTop: 5 }}>{item.time}</Text>
                                         <Image style={{ height: 180, marginRight: 10 }} source={{ uri: item.image }} />
@@ -92,7 +96,7 @@ export default class PostsScreen extends Component {
                                     {
                                         this.state.users && this.state.users.map((item, index) => (
                                             <View key={index} style={{ flexDirection: 'row' }} >
-                                                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.setState({ modalvisible: false, uid: item.id })}>
+                                                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.setState({ modalvisible: false, uid: item.id, user1: item })}>
                                                     <Text style={{ marginLeft: 10, marginTop: 10 }}>{item.username}</Text>
                                                     <Image style={{ height: 30, width: 30, borderRadius: 20, right: -20 }}
                                                         source={{ uri: item.profilepicture }} />

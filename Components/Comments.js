@@ -17,7 +17,6 @@ export default class CommentsScreen extends Component {
         }
     }
     componentDidMount() {
-        console.log("c", this.state.flag)
         axios.get('https://panorbit.in/api/comments.json')
             .then(result => {
                 this.setState({ comments: result.data.comments })

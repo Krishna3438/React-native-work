@@ -10,13 +10,14 @@ export default class CommentsScreen extends Component {
             pid: this.props.navigation.state.params.pid,
             user1: '',
             comment: '',
-            flag: false,
             uId: this.props.navigation.state.params.uId,
             users: '',
-            username: ''
+            username: '',
+            flag: false
         }
     }
     componentDidMount() {
+        console.log("c", this.state.flag)
         axios.get('https://panorbit.in/api/comments.json')
             .then(result => {
                 this.setState({ comments: result.data.comments })
@@ -48,9 +49,9 @@ export default class CommentsScreen extends Component {
                                 return (
                                     <View key={index} style={{ marginTop: 20, flexDirection: 'row' }}>
                                         <Image
-                                            style={{ marginLeft: 5, height: 30, width: 30, borderRadius: 20 , marginRight:10 }} source={{ uri: item.profilePicture }} />
-                                        <Text style={{  flexDirection:'row' }}>
-                                            <Text style={{ fontWeight: 'bold' , marginRight:5 }}>{this.state.username}  </Text>
+                                            style={{ marginLeft: 5, height: 30, width: 30, borderRadius: 20, marginRight: 10 }} source={{ uri: item.profilePicture }} />
+                                        <Text style={{ flexDirection: 'row' }}>
+                                            <Text style={{ fontWeight: 'bold', marginRight: 5 }}>{this.state.username}  </Text>
                                             <Text>  {item.body}</Text>
                                         </Text>
                                     </View>)
@@ -60,14 +61,7 @@ export default class CommentsScreen extends Component {
                 </View>
             )
         }
-        if (this.state.flag) {
-            return (
-                <View style={{ flexDirection: 'row' }}>
-                    <Image style={{ marginLeft: 5, height: 30, width: 30, borderRadius: 20 }} source={{ uri: "https://panorbit.in/wp-content/uploads/2019/hotlink-ok/1001.jpeg" }} />
-                    <Text style={{ marginLeft: 8 }}>{this.state.comment}</Text>
-                </View>
-            )
-        }
+
     }
 
     render() {
@@ -81,6 +75,16 @@ export default class CommentsScreen extends Component {
                 </View>
                 <ScrollView style={{ marginLeft: 10 }}>
                     {this.comment()}
+                    {
+                        this.state.flag &&
+                        <View style={{ flexDirection: 'row' }}>
+                            <Image style={{ marginLeft: 5, height: 30, width: 30, borderRadius: 20, marginRight: 10 }} source={{ uri: "https://panorbit.in/wp-content/uploads/2019/hotlink-ok/1001.jpeg" }} />
+                            <Text style={{ flexDirection: 'row' , height:'100%' ,width:'100%' , marginTop:5  }}>
+                                <Text style={{ fontWeight: 'bold', marginRight: 5 }}>{this.state.username}  </Text>
+                                <Text>  {this.state.comment}</Text>
+                            </Text>
+                        </View>
+                    }
                 </ScrollView>
                 <View style={{ justifyContent: 'flex-end', marginBottom: 6, borderTopWidth: 0.5 }}>
                     <View style={{ flexDirection: 'row' }}>

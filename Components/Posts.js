@@ -41,13 +41,13 @@ export default class PostsScreen extends Component {
                                             <TouchableOpacity >
                                                 <Image source={require('./../assets/like.png')} />
                                             </TouchableOpacity >
-                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { pid: item.id })}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments', { pid: item.id, uId: item.userId })}>
                                                 <Image style={{ marginLeft: 20 }}
                                                     source={require('./../assets/comment.png')} />
                                             </TouchableOpacity>
                                             <Text style={{ marginLeft: 5 }}>1 comment</Text>
                                             <View style={{ flexDirection: 'row', marginLeft: 76 }}>
-                                                <Text style={{ right: -20, marginTop: 5 }} onPress={() => this.props.navigation.navigate('Comments', { pid: item.id })}>Add a comment</Text>
+                                                <Text style={{ right: -20, marginTop: 5 }} onPress={() => this.props.navigation.navigate('Comments', { pid: item.id, uId: item.userId })}>Add a comment</Text>
                                                 <Image style={{ height: 30, width: 30, right: -40, borderRadius: 20 }}
                                                     source={{ uri: this.state.user1.profilepicture }} />
                                             </View>
@@ -72,7 +72,7 @@ export default class PostsScreen extends Component {
                     </TouchableOpacity>
                     <Image
                         source={require('./../assets/logo.jpg')} />
-                    <TouchableOpacity style={{ height: 30, width: 30, alignSelf: 'flex-end', right: -250, borderRadius: 20 }} onPress={() => this.setState({modalvisible:true})}>
+                    <TouchableOpacity style={{ height: 30, width: 30, alignSelf: 'flex-end', right: -250, borderRadius: 20 }} onPress={() => this.setState({ modalvisible: true })}>
                         <Image style={{ height: 30, width: 30, borderRadius: 20 }} source={{ uri: this.state.user1.profilepicture }} />
                     </TouchableOpacity>
                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", marginTop: 22 }}>
@@ -92,7 +92,7 @@ export default class PostsScreen extends Component {
                                     {
                                         this.state.users && this.state.users.map((item, index) => (
                                             <View key={index} style={{ flexDirection: 'row' }} >
-                                                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.setState({modalvisible:false , uid : item.id})}>
+                                                <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => this.setState({ modalvisible: false, uid: item.id })}>
                                                     <Text style={{ marginLeft: 10, marginTop: 10 }}>{item.username}</Text>
                                                     <Image style={{ height: 30, width: 30, borderRadius: 20, right: -20 }}
                                                         source={{ uri: item.profilepicture }} />
